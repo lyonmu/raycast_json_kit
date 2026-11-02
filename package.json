@@ -3,7 +3,7 @@
   "name": "json-kit",
   "title": "JSON Kit",
   "description": "Inspect and transform JSON locally",
-  "icon": "icon.png",
+  "icon": "json-kit.png",
   "author": "lyonmu",
   "license": "MIT",
   "categories": [
