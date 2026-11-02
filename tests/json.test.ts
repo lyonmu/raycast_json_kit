@@ -12,7 +12,8 @@ test("formats without losing numeric tokens, duplicate keys or string whitespace
 });
 
 test("rejects invalid JSON and only decodes complete strings", () => {
-  for (const value of ["", "{a:1}", "[1,]", "/* x */ {}", "{} {}", "01"]) assert.throws(() => parseDocument(value));
+  for (const value of ["", "{a:1}", "[1,]", "/* x */ {}", "{} {}", "01"])
+    assert.throws(() => parseDocument(value));
   assert.throws(() => unescapeJson('{"a":1}'));
   assert.throws(() => unescapeJson('"\\x"'));
   const value = '{"a":1}';
@@ -23,4 +24,13 @@ test("rejects invalid JSON and only decodes complete strings", () => {
 test("counts lines and unicode code points", () => {
   assert.deepEqual(stats(""), { lines: 1, characters: 0 });
   assert.deepEqual(stats("中😀\r\n"), { lines: 2, characters: 4 });
+});
+
+test("applies the same depth limit to arrays and objects", () => {
+  const nestedArray = (n: number) => "[".repeat(n) + "0" + "]".repeat(n);
+  const nestedObject = (n: number) => '{"x":'.repeat(n) + "0" + "}".repeat(n);
+  for (const make of [nestedArray, nestedObject]) {
+    assert.doesNotThrow(() => parseDocument(make(128)));
+    assert.throws(() => parseDocument(make(129)), /depth limit/);
+  }
 });
