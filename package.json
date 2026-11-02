@@ -1,0 +1,14 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "json-kit",
+  "title": "JSON Kit",
+  "description": "Inspect and transform JSON locally",
+  "icon": "icon.png",
+  "author": "lyonmu",
+  "license": "MIT",
+  "categories": ["Developer Tools"],
+  "commands": [{ "name": "json-viewer", "title": "JSON Viewer", "description": "Inspect and transform JSON locally", "mode": "view" }],
+  "scripts": { "build": "ray build", "dev": "ray develop", "lint": "ray lint", "typecheck": "tsc --noEmit", "test": "tsx --test tests/*.test.ts" },
+  "dependencies": { "@raycast/api": "^2.10.1", "jsonc-parser": "^3.3.1", "react": "^19.0.0" },
+  "devDependencies": { "@types/node": "^22.0.0", "@types/react": "^19.0.0", "tsx": "^4.0.0", "typescript": "^5.0.0" }
+}
