@@ -1,4 +1,4 @@
-import { applyEdits, format, parseTree, printParseErrorCode, type Node, type ParseError } from "jsonc-parser";
+import { applyEdits, format, parseTree, printParseErrorCode, type Node, type ParseError } from "jsonc-parser/lib/esm/main";
 
 export const MAX_INPUT_BYTES = 1024 * 1024;
 export const MAX_DEPTH = 128;
