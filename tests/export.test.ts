@@ -16,5 +16,7 @@ test("export does not overwrite without approval and leaves no temporary file", 
     await writeJson(path, '{"x":1}', true);
     assert.equal(await readFile(path, "utf8"), '{"x":1}');
     assert.throws(() => targetPath(directory, "../data.json"));
-  } finally { await rm(directory, { recursive: true, force: true }); }
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
