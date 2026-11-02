@@ -91,6 +91,7 @@ export default function Command() {
           />
           <Action
             title="Escape JSON"
+            icon={Icon.CodeBlock}
             onAction={() =>
               run(() =>
                 push(
@@ -104,6 +105,7 @@ export default function Command() {
           />
           <Action
             title="Unescape JSON String"
+            icon={Icon.Text}
             onAction={() =>
               run(() =>
                 push(
@@ -149,6 +151,7 @@ function TextResult({ title, value }: { title: string; value: string }) {
           <Action.CopyToClipboard title="Copy Result" content={value} />
           <Action.Push
             title="Search Text"
+            icon={Icon.MagnifyingGlass}
             target={<RegexForm source={value} />}
           />
         </ActionPanel>
@@ -265,6 +268,11 @@ function TreeView({ document }: { document: JsonDocument }) {
                 {item.container ? (
                   <Action
                     title={expanded.has(item.id) ? "Collapse" : "Expand"}
+                    icon={
+                      expanded.has(item.id)
+                        ? Icon.ChevronDown
+                        : Icon.ChevronRight
+                    }
                     onAction={() => toggle(item)}
                   />
                 ) : (
@@ -275,6 +283,7 @@ function TreeView({ document }: { document: JsonDocument }) {
                 )}
                 <Action.Push
                   title="View Node"
+                  icon={Icon.Eye}
                   target={
                     <TextResult title={item.pointer || "Root"} value={raw} />
                   }
@@ -291,6 +300,7 @@ function TreeView({ document }: { document: JsonDocument }) {
                 />
                 <Action
                   title="Expand All"
+                  icon={Icon.ArrowDown}
                   onAction={() =>
                     setExpanded(
                       new Set(all.filter((x) => x.container).map((x) => x.id)),
@@ -299,6 +309,7 @@ function TreeView({ document }: { document: JsonDocument }) {
                 />
                 <Action
                   title="Collapse All"
+                  icon={Icon.ArrowUp}
                   onAction={() => setExpanded(new Set())}
                 />
               </ActionPanel>
@@ -398,6 +409,7 @@ function Matches({ result }: { result: SearchResult }) {
             <ActionPanel>
               <Action.Push
                 title="View Match Context"
+                icon={Icon.Eye}
                 target={
                   <TextResult
                     title={`Line ${item.line}`}
